@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="ht">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KomandLakay05</title>
+<style>
+:root{--red:#d71920;--black:#101010;--white:#fff;--gray:#f4f4f4}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--black);background:#fff}
+header{background:var(--black);color:white;padding:16px 5%;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.brand{font-weight:900;font-size:1.25rem}.brand span{color:var(--red)}
+nav a{color:white;text-decoration:none;margin:0 8px;font-weight:bold}
+.hero{background:linear-gradient(120deg,#111 65%,#d71920);color:white;padding:44px 5%;text-align:left}
+.hero h1{font-size:clamp(2rem,6vw,3rem);margin:0 0 12px}.hero p{max-width:650px;line-height:1.5}
+.btn{background:var(--red);color:white;border:0;border-radius:8px;padding:12px 16px;font-weight:bold;display:inline-block;text-decoration:none;cursor:pointer}
+section{padding:28px 5%}.section-title{margin:0 0 18px;font-size:1.5rem}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.card{border:1px solid #ddd;border-radius:12px;overflow:hidden;background:white}
+.card img{width:100%;height:190px;object-fit:cover;background:#eee}.card-body{padding:14px}.card h3{margin:0 0 8px}.price{font-weight:900;color:var(--red);margin:10px 0}
+input,select,textarea{width:100%;padding:12px;border:1px solid #ccc;border-radius:8px;margin:6px 0;font:inherit}
+form{max-width:720px;background:#f7f7f7;padding:16px;border-radius:12px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}.muted{color:#666;font-size:.93rem}
+.cart{background:#f5f5f5;border-radius:12px;padding:16px;max-width:720px}
+footer{background:#111;color:#fff;padding:24px 5%;text-align:center}
+@media(max-width:560px){.grid2{grid-template-columns:1fr}nav a{margin:0 4px}}
+</style>
+</head>
+<body>
+<header><div class="brand">Komand<span>Lakay05</span></div><nav><a href="#boutik">Boutik</a><a href="#komannde">Kòmande</a><a href="#panier">Panier</a></nav></header>
+<div class="hero"><h1>Achte fasil. Kòmande lakay.</h1><p>Jwenn pwodwi nan boutik la oswa voye lyen pwodwi ou vle achte sou SHEIN, Temu, AliExpress, Amazon ak lòt sit.</p><a class="btn" href="#komannde">Fè yon kòmand</a></div>
+<section id="boutik"><h2 class="section-title">Pwodwi nan boutik la</h2><div class="cards" id="products">
+<div class="card"><img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=700&q=80" alt="Mont"><div class="card-body"><h3>Mont élégance</h3><div class="price">$25.00</div><button class="btn" onclick="addCart('Mont élégance',25)">Ajoute nan panier</button></div></div>
+<div class="card"><img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=700&q=80" alt="Sak"><div class="card-body"><h3>Sak alamòd</h3><div class="price">$30.00</div><button class="btn" onclick="addCart('Sak alamòd',30)">Ajoute nan panier</button></div></div>
+<div class="card"><img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99?auto=format&fit=crop&w=700&q=80" alt="Kamera"><div class="card-body"><h3>Akseswa foto</h3><div class="price">$18.00</div><button class="btn" onclick="addCart('Akseswa foto',18)">Ajoute nan panier</button></div></div>
+</div></section>
+<section id="panier"><h2 class="section-title">Panier mwen</h2><div class="cart"><div id="cartItems">Panier an vid.</div><p><b>Total: $<span id="cartTotal">0.00</span></b></p><button class="btn" onclick="checkoutCart()">Voye kòmand panier pa WhatsApp</button></div></section>
+<section id="komannde"><h2 class="section-title">Kòmand espesyal</h2><p class="muted">Pou kòmand espesyal, depo 70% obligatwa. Rès 30% lan ap peye lè kòmand la pare, selon kondisyon livrezon.</p>
+<form id="orderForm">
+<div class="grid2"><input id="customerName" placeholder="Non konplè" required><input id="customerPhone" placeholder="Telefòn / WhatsApp" required></div>
+<select id="website" required><option value="">Chwazi sit la</option><option>SHEIN</option><option>Temu</option><option>AliExpress</option><option>Amazon</option><option>Yon lòt sit</option></select>
+<input id="productName" placeholder="Non pwodwi a (si ou konnen)"><input id="productLink" type="url" placeholder="Kole lyen pwodwi a (URL)" required>
+<div class="grid2"><input id="price" type="number" min="0" step="0.01" placeholder="Pri estime ($)" required><input id="qty" type="number" min="1" value="1" placeholder="Kantite" required></div>
+<div class="grid2"><input id="size" placeholder="Gwosè (opsyonèl)"><input id="color" placeholder="Koulè (opsyonèl)"></div>
+<textarea id="notes" rows="3" placeholder="Detay oswa lòt demann"></textarea>
+<div id="depositPreview" class="muted">Depo 70%: $0.00 • Balans 30%: $0.00</div><button class="btn" type="submit">Voye kòmand espesyal</button></form></section>
+<footer><b>KomandLakay05</b><p>Nou ede w jwenn sa ou bezwen sou entènèt.</p></footer>
+<script>
+let cart=[];
+function addCart(name,price){cart.push({name,price});renderCart()}
+function renderCart(){const total=cart.reduce((s,x)=>s+x.price,0);document.getElementById('cartTotal').textContent=total.toFixed(2);document.getElementById('cartItems').innerHTML=cart.length?cart.map(x=>`${x.name} — $${x.price.toFixed(2)}`).join('<br>'):'Panier an vid.'}
+function checkoutCart(){if(!cart.length){alert('Panier an vid.');return}const total=cart.reduce((s,x)=>s+x.price,0);const msg=`KÒMAND KOMANDLAKAY05%0A${cart.map(x=>x.name+' - $'+x.price.toFixed(2)).join('%0A')}%0ATotal: $${total.toFixed(2)}`;openWhatsApp(msg)}
+function updateDeposit(){const p=Number(document.getElementById('price').value||0)*Number(document.getElementById('qty').value||1);document.getElementById('depositPreview').textContent=`Depo 70%: $${(p*.7).toFixed(2)} • Balans 30%: $${(p*.3).toFixed(2)}`}
+['price','qty'].forEach(id=>document.getElementById(id).addEventListener('input',updateDeposit));
+document.getElementById('orderForm').addEventListener('submit',e=>{e.preventDefault();const name=document.getElementById('customerName').value,phone=document.getElementById('customerPhone').value,site=document.getElementById('website').value,product=document.getElementById('productName').value,link=document.getElementById('productLink').value,price=Number(document.getElementById('price').value),qty=Number(document.getElementById('qty').value),size=document.getElementById('size').value,color=document.getElementById('color').value,notes=document.getElementById('notes').value,total=price*qty;const msg=`KÒMAND ESPESYAL KOMANDLAKAY05%0AKliyan: ${encodeURIComponent(name)}%0ATelefòn: ${encodeURIComponent(phone)}%0ASit: ${encodeURIComponent(site)}%0APwodwi: ${encodeURIComponent(product)}%0ALyen: ${encodeURIComponent(link)}%0APri: $${price.toFixed(2)}%0AKantite: ${qty}%0ATotal: $${total.toFixed(2)}%0ADepo 70%: $${(total*.7).toFixed(2)}%0ABalans 30%: $${(total*.3).toFixed(2)}%0AGwosè: ${encodeURIComponent(size)}%0AKoulè: ${encodeURIComponent(color)}%0ADetay: ${encodeURIComponent(notes)}`;openWhatsApp(msg)});
+function openWhatsApp(msg){const number='50900000000';window.open('https://wa.me/'+number+'?text='+msg,'_blank')}
+</script>
+</body></html>
