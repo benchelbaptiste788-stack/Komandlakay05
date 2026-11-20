@@ -1,6 +1,17 @@
 
 <!DOCTYPE html>
 <html lang="ht">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+const SUPABASE_URL = "METE_URL_OU_LA";
+const SUPABASE_KEY = "METE_ANON_KEY_OU_LA";
+
+const supabaseClient = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
+</script>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
