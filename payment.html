@@ -1,0 +1,218 @@
+
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KomandLakay05 | Peman</title>
+
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f4f4;
+  color: #222;
+}
+
+header {
+  background: #111;
+  color: white;
+  padding: 22px 15px;
+  text-align: center;
+}
+
+header h1 span {
+  color: #e53935;
+}
+
+header p {
+  margin-top: 8px;
+  font-size: 14px;
+}
+
+.container {
+  max-width: 550px;
+  margin: 25px auto;
+  padding: 20px;
+}
+
+.card {
+  background: white;
+  padding: 22px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px #0001;
+}
+
+h2 {
+  margin-bottom: 18px;
+}
+
+label {
+  display: block;
+  margin-top: 15px;
+  font-weight: bold;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 13px;
+  margin-top: 7px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+.payment-option {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.payment-option button {
+  flex: 1;
+  padding: 15px;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  background: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.payment-option button.active {
+  border-color: #e53935;
+  background: #fff1f1;
+  color: #c62828;
+}
+
+.info {
+  background: #fff4e5;
+  padding: 14px;
+  border-radius: 8px;
+  margin-top: 15px;
+  line-height: 1.6;
+}
+
+.submit-btn {
+  width: 100%;
+  margin-top: 22px;
+  padding: 15px;
+  border: none;
+  border-radius: 9px;
+  background: #e53935;
+  color: white;
+  font-size: 17px;
+  font-weight: bold;
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  color: #777;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>Komand<span>Lakay05</span></h1>
+  <p>Achte fasil • Peye fasil • Kòmande an sekirite</p>
+</header>
+
+<div class="container">
+<div class="card">
+
+<h2>Fòm Peman Kòmand</h2>
+
+<form id="paymentForm">
+
+<label>Non konplè</label>
+<input type="text" id="name" placeholder="Antre non ou" required>
+
+<label>Nimewo telefòn</label>
+<input type="tel" id="phone" placeholder="Nimewo WhatsApp ou" required>
+
+<label>Referans / Nimewo kòmand</label>
+<input type="text" id="order" placeholder="KL-0001">
+
+<label>Montan pou peye (HTG)</label>
+<input type="number" id="amount" placeholder="Montan kòmand ou" min="1" required>
+
+<label>Chwazi metòd peman</label>
+
+<div class="payment-option">
+<button type="button" id="monBtn" onclick="choosePayment('MonCash')">
+MonCash
+</button>
+
+<button type="button" id="natBtn" onclick="choosePayment('NatCash')">
+NatCash
+</button>
+</div>
+
+<input type="hidden" id="method" required>
+
+<div class="info" id="paymentInfo">
+Chwazi MonCash oswa NatCash pou wè enstriksyon peman yo.
+</div>
+
+<label>ID tranzaksyon</label>
+<input type="text" id="transaction" placeholder="Antre ID tranzaksyon ou" required>
+
+<label>Prèv peman (foto)</label>
+<input type="file" id="proof" accept="image/*" required>
+
+<label>Remak</label>
+<textarea id="note" rows="3" placeholder="Ekri yon mesaj si ou bezwen"></textarea>
+
+<button type="submit" class="submit-btn">
+Soumèt Peman Mwen
+</button>
+
+</form>
+</div>
+</div>
+
+<footer>
+© 2026 KomandLakay05 • Tout dwa rezève
+</footer>
+
+<script>
+function choosePayment(method) {
+  document.getElementById("method").value = method;
+
+  document.getElementById("monBtn").classList.remove("active");
+  document.getElementById("natBtn").classList.remove("active");
+
+  if(method === "MonCash") {
+    document.getElementById("monBtn").classList.add("active");
+    document.getElementById("paymentInfo").innerHTML =
+      "MonCash: Tanpri voye peman an sou nimewo MonCash biznis la. <br><strong>Nimewo peman an ap ajoute pa administratè a.</strong>";
+  }
+
+  if(method === "NatCash") {
+    document.getElementById("natBtn").classList.add("active");
+    document.getElementById("paymentInfo").innerHTML =
+      "NatCash: Tanpri voye peman an sou nimewo NatCash biznis la. <br><strong>Nimewo peman an ap ajoute pa administratè a.</strong>";
+  }
+}
+
+document.getElementById("paymentForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  if(!document.getElementById("method").value) {
+    alert("Tanpri chwazi MonCash oswa NatCash.");
+    return;
+  }
+
+  alert("Fòm nan pare! Pwochen etap la se konekte li ak sistèm pou resevwa kòmand yo.");
+});
+</script>
+
+</body>
+</html>
