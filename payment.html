@@ -181,8 +181,7 @@ Soumèt Peman Mwen
 <footer>
 © 2026 KomandLakay05 • Tout dwa rezève
 </footer>
-
-<script>
+  
 function choosePayment(method) {
   document.getElementById("method").value = method;
 
@@ -191,28 +190,26 @@ function choosePayment(method) {
 
   if(method === "MonCash") {
     document.getElementById("monBtn").classList.add("active");
+
     document.getElementById("paymentInfo").innerHTML =
-      "MonCash: Tanpri voye peman an sou nimewo MonCash biznis la. <br><strong>Nimewo peman an ap ajoute pa administratè a.</strong>";
+      "<h3>PEMAN MONCASH</h3>" +
+      "<p>Voye peman ou sou nimewo sa a:</p>" +
+      "<h2 style='color:#e53935'>+509 4693-8969</h2>" +
+      "<p>Non kont lan: KomandLakay05</p>" +
+      "<p>Apre peman an, antre ID tranzaksyon ou epi soumèt prèv peman an.</p>";
   }
 
   if(method === "NatCash") {
     document.getElementById("natBtn").classList.add("active");
+
     document.getElementById("paymentInfo").innerHTML =
-      "NatCash: Tanpri voye peman an sou nimewo NatCash biznis la. <br><strong>Nimewo peman an ap ajoute pa administratè a.</strong>";
+      "<h3>PEMAN NATCASH</h3>" +
+      "<p>Voye peman ou sou nimewo sa a:</p>" +
+      "<h2 style='color:#e53935'>+509 3564-1081</h2>" +
+      "<p>Non kont lan: KomandLakay05</p>" +
+      "<p>Apre peman an, antre ID tranzaksyon ou epi soumèt prèv peman an.</p>";
   }
 }
 
-document.getElementById("paymentForm").addEventListener("submit", function(e) {
-  e.preventDefault();
 
-  if(!document.getElementById("method").value) {
-    alert("Tanpri chwazi MonCash oswa NatCash.");
-    return;
-  }
-
-  alert("Fòm nan pare! Pwochen etap la se konekte li ak sistèm pou resevwa kòmand yo.");
-});
-</script>
-
-</body>
-</html>
+<script>
